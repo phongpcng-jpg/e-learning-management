@@ -1,4 +1,4 @@
-package com.example.e_learning_management.common.response;
+package com.example.e_learning_management.dto.common;
 
 import java.util.Map;
 
