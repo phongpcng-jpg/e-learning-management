@@ -1,4 +1,4 @@
-package com.example.e_learning_management.common.message;
+package com.example.e_learning_management.message;
 
 public final class CommonMessage {
 

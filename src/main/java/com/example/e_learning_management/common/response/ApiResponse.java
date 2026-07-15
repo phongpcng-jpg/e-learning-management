@@ -2,7 +2,7 @@ package com.example.e_learning_management.common.response;
 
 import java.util.Map;
 
-import com.example.e_learning_management.common.message.CommonMessage;
+import com.example.e_learning_management.message.CommonMessage;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
