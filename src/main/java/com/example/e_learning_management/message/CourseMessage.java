@@ -38,4 +38,13 @@ public final class CourseMessage {
     public static final String COURSE_NOT_FOUND = 
         "Khóa học không tồn tại.";
 
+    public static final String CREATED = 
+        "Tạo hóa học thành công.";
+
+    public static final String UPDATED =  
+        "Cập nhật hóa học thành công.";
+
+    public static final String GET_PAGE =  
+        "Lấy trang danh sách hóa học thành công.";
+
 }
