@@ -25,8 +25,40 @@
 ### 🛠️ Project Structure
 
 ```text
-
-
+com/example/e_learning_management/
+    │
+    ├── 📦 dto/
+    │   ├── 📦 common/
+    │   │   ├── 📨 ApiResponse.java
+    │   │   └── 📄 PageResponse.java
+    │   ├── 📦 request/
+    │   │   └── 📋 CourseRequestDTO.java
+    │   └── 📦 response/
+    │       └── 📋 CourseResponseDTO.java
+    │
+    ├── 📦 enity/
+    │   └── 💾 Course.java
+    │
+    ├── 📦 exception/
+    │   ├── 🛡️ GlobalExceptionHandler.java
+    │   └── 🚨 ResourceNotFoundException.java
+    │
+    ├── 📦 message/
+    │   ├── 🔒 CommonMessage.java
+    │   └── 🔒 CourseMessage.java
+    │
+    ├── 📦 controller/
+    │   └── 🟢 CourseController.java
+    │
+    ├── 📦 service/
+    │   ├── 📦 impl/
+    │   │   └── 🟢 CourseServiceImpl.java
+    │   └── 🟤 ICourseService.java
+    │
+    ├── 📦 repository/
+    │   └── 🟢 CourseRepository.java
+    │
+    └── 🚀 ELearningManagementApplication.java
 ```
 
 
