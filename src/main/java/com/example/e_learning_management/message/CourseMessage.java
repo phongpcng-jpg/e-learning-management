@@ -35,4 +35,7 @@ public final class CourseMessage {
     public static final String INSTRUCTOR_EMAIL_INVALID = 
         "Email giảng viên phụ trách của khóa học không được đúng định dạng email.";
 
+    public static final String COURSE_NOT_FOUND = 
+        "Khóa học không tồn tại.";
+
 }
