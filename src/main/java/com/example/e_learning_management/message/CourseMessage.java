@@ -47,4 +47,25 @@ public final class CourseMessage {
     public static final String GET_PAGE =  
         "Lấy trang danh sách hóa học thành công.";
 
+    public static final String PRICE_MIN_INVALID = 
+        "Giá nhỏ nhất của khóa học phải là một số dương lớn hơn hoặc bằng 0.";
+
+    public static final String PRICE_MAX_INVALID = 
+        "Giá lớn nhất của khóa học phải là một số dương lớn hơn hoặc bằng 0.";
+
+    public static final String DURATION_MIN_INVALID = 
+        "Thời lượng học ít nhất phải là số nguyên dương lớn hơn 0.";
+
+    public static final String DURATION_MAX_INVALID = 
+        "Thời lượng học nhiều nhất phải là số nguyên dương lớn hơn 0.";
+
+    public static final String SEARCH_PAGE = 
+        "Tìm kiếm trang danh sách hóa học thành công.";
+
+    public static final String PRICE_RANGE_INVALID = 
+        "Giá nhỏ nhất của khóa học không được lớn hơn giá trị lớn nhất.";
+
+    public static final String DURATION_RANGE_INVALID = 
+        "Thời lượng học ít nhất của khóa học không được lớn thời lượng học nhiều nhất.";
+
 }

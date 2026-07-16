@@ -24,8 +24,21 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ApiResponse.fail(Map.ofEntries(
-                    Map.entry("fail", ex.getMessage())
+                    Map.entry("notFound", ex.getMessage())
                 )));
+
+    }
+
+    @ExceptionHandler(InvalidRangeException.class)
+    public ResponseEntity<ApiResponse<Void>> handleInvalidRange(
+        InvalidRangeException ex
+    ) {
+
+        return ResponseEntity.badRequest()
+                .body(ApiResponse.fail(Map.ofEntries(
+                    Map.entry("invalidRange", ex.getMessage())
+                )));
+
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

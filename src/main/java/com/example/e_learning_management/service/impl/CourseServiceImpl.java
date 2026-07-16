@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.e_learning_management.dto.common.PageResponse;
 import com.example.e_learning_management.dto.request.CourseRequestDTO;
+import com.example.e_learning_management.dto.request.CourseSearchDTO;
 import com.example.e_learning_management.dto.response.CourseResponseDTO;
 import com.example.e_learning_management.enity.Course;
+import com.example.e_learning_management.exception.InvalidRangeException;
 import com.example.e_learning_management.exception.ResourceNotFoundException;
 import com.example.e_learning_management.message.CourseMessage;
 import com.example.e_learning_management.repository.CourseRepository;
@@ -127,6 +129,73 @@ public class CourseServiceImpl implements ICourseService {
                 .price(savedCourse.getPrice())
                 .durationHours(savedCourse.getDurationHours())
                 .instructorEmail(savedCourse.getInstructorEmail())
+                .build();
+
+    }
+
+    @Override
+    public PageResponse<CourseResponseDTO> searchPagedCourses(
+        int page, 
+        int size, 
+        String sortBy, 
+        String direction,
+        CourseSearchDTO courseSearch
+    ) {
+
+        if (
+            courseSearch.getMinPrice() != null
+            && courseSearch.getMaxPrice() != null
+            && courseSearch.getMinPrice().compareTo(courseSearch.getMaxPrice()) > 0
+        ) {
+            throw new InvalidRangeException(CourseMessage.PRICE_RANGE_INVALID);
+        }
+
+        if (
+            courseSearch.getMinDurationHours() != null
+            && courseSearch.getMaxDurationHours() != null
+            && courseSearch.getMinDurationHours() > courseSearch.getMaxDurationHours()
+        ) {
+            throw new InvalidRangeException(CourseMessage.DURATION_RANGE_INVALID);
+        }
+        
+        if (page < 0) {
+            page = 0;
+        }
+
+        Sort sort = Sort.unsorted();
+
+        if (
+            sortBy != null && !sortBy.isBlank()
+            && direction != null && !direction.isBlank()
+        ) {
+
+            sort = direction.equalsIgnoreCase("DESC")
+                        ? Sort.by(sortBy).descending()
+                        : Sort.by(sortBy).ascending();
+
+        }
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        Page<CourseResponseDTO> coursePage = courseRepository.search(
+            courseSearch.getCourseCode(),
+            courseSearch.getTitle(),
+            courseSearch.getDescription(),
+            courseSearch.getMinPrice(),
+            courseSearch.getMaxPrice(),
+            courseSearch.getMinDurationHours(),
+            courseSearch.getMaxDurationHours(),
+            courseSearch.getInstructorEmail(),
+            pageable
+        );
+
+        return PageResponse.<CourseResponseDTO>builder()
+                .items(coursePage.getContent())
+                .page(coursePage.getNumber())
+                .size(coursePage.getSize())
+                .totalItems(coursePage.getTotalElements())
+                .totalPages(coursePage.getTotalPages())
+                .isLast(coursePage.isEmpty())
                 .build();
 
     }
